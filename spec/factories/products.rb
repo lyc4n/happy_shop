@@ -10,6 +10,7 @@ FactoryBot.define do
     sale_text  "50% off"
     category   {Faker::Commerce.department}
     under_sale false
+    sold_out   false
 
     trait :sold_out do
       sold_out true

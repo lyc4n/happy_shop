@@ -10,7 +10,7 @@ RSpec.describe Product, type: :model do
   end
 
   describe "Validations" do
-    [:name, :category, :under_sale, :sale_text].each do |attribute|
+    [:name, :category].each do |attribute|
       it {is_expected.to validate_presence_of(attribute)}
     end
   end

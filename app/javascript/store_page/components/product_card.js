@@ -27,7 +27,15 @@ class ProductCard extends Component{
     return(
       <li className="product-card">
         <Link to={productPath} className="product-card__link">
-          <div className="product-card__image"></div>
+          <div className="product-card__image">
+            <a onClick={(e)=>{ e.preventDefault()}}
+               className="product-card__wishlink-button">
+              <i className="fa fa-heart-o fa-2x"></i>
+            </a>
+
+            <button onClick={(e)=>{ e.preventDefault()}}
+                    className="product-card__add-to-bag-button">ADD TO BAG</button>
+          </div>
         </Link>
         <div className="product-card__tags">
           <span className="new-tag">NEW</span> | LIMITED EDITION

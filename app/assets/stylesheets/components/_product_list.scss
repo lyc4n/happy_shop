@@ -4,3 +4,9 @@
   margin: auto;
 }
 
+.product-list__pagination-container{
+  text-align: center;
+  .rc-pagination{
+    display: inline-block;
+  }
+}

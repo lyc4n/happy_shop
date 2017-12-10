@@ -25,11 +25,22 @@ class ProductsFetcher{
 class Main extends Component{
   constructor(props){
     super(props)
-    this.state = {products: [], fetchOptions: {}}
+    this.state = {
+      products:     [],
+      fetchOptions: {page: {number: 1}}}
   }
 
   componentDidMount(){
     this.fetchRecords()
+  }
+
+  handlePageClick(pageNumber){
+    const fetchOptions = $.extend({}, this.state.fetchOptions)
+    const size = fetchOptions.page.size
+    fetchOptions.page  = {number: pageNumber}
+    this.setState({fetchOptions: fetchOptions}, (() =>{
+      this.fetchRecords()
+    }))
   }
 
   fetchRecords(){
@@ -42,7 +53,10 @@ class Main extends Component{
   render(){
     return(
       <div>
-        <ProductList products={this.state.products} />
+        <ProductList
+          handlePageClick={this.handlePageClick.bind(this)}
+          products={this.state.products}
+          meta={this.state.meta} />
       </div>
     )
   }

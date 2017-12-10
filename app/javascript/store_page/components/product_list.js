@@ -1,10 +1,19 @@
 import React, {Component} from "react"
 import ProductCard        from "./product_card"
+import ProductFilterForm  from "./product_filter_form"
 import Pagination         from "rc-pagination"
 import PaginationLocale   from "rc-pagination/lib/locale/en_US"
 import "rc-pagination/assets/index.css";
 
 class ProductList extends Component{
+  renderFilterForm(){
+    return(
+      <ProductFilterForm
+        handleFilterSubmission={this.props.handleFilterSubmission}
+        store={this.props.store}/>
+    )
+  }
+
   renderPagination(){
     if(this.props.products.length == 0){
       return(null)
@@ -35,6 +44,7 @@ class ProductList extends Component{
     return(
       <div className="product-list--container">
         <p className="product-list-label">Product List</p>
+        {this.renderFilterForm()}
         {this.renderPagination()}
         {this.renderItems()}
         {this.renderPagination()}

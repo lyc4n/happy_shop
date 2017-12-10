@@ -43,6 +43,14 @@ class Main extends Component{
     }))
   }
 
+  handleFilterSubmission(fetchOptions){
+    const fetcher     = new ProductsFetcher
+    fetchOptions.page = {number: 1}
+    this.setState({fetchOptions: fetchOptions}, (() =>{
+      this.fetchRecords()
+    }))
+  }
+
   fetchRecords(){
     const fetcher = new ProductsFetcher
     fetcher.perform(this.state.fetchOptions, ((response) =>{
@@ -54,6 +62,8 @@ class Main extends Component{
     return(
       <div>
         <ProductList
+          handleFilterSubmission={this.handleFilterSubmission.bind(this)}
+          store={this.props.store}
           handlePageClick={this.handlePageClick.bind(this)}
           products={this.state.products}
           meta={this.state.meta} />

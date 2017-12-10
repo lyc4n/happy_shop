@@ -2,7 +2,42 @@
   list-style-type: none;
   display: inline-block;
   width: 280px;
-  height: 200px;
+  height: 360px;
   border: 1px dotted gray;
   padding: 15px 5px;
+}
+
+.product-card__image{
+  background: image_url("product-card-image") center center;
+  background-size: contain;
+  height: 220px;
+  width: 100%;
+}
+
+.product-card__infos{
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.product-card__tags{
+  font-size: 11px;
+}
+
+.product-card__infos p{
+  margin-bottom: 1px;
+}
+
+.product-card__info-name{
+  font-weight: bolder;
+}
+
+.product-card__info-price .price-detail{
+  margin-right: 5px;
+}
+.product-card__info-stars .fa-star{
+  color: #D80035;
+}
+
+.product-card__info-stars .fa-star, .product-card__info-stars .fa-star-o{
+  margin-right: 3px;
 }

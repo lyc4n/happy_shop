@@ -2,11 +2,37 @@
   width: auto;
   max-width: 1000px;
   margin: auto;
+
+  .loader{
+    margin-top: 130px;
+  }
 }
 
 .product-list__pagination-container{
   text-align: center;
   .rc-pagination{
     display: inline-block;
+  }
+}
+
+.product-list{
+  padding-left: 0px;
+  width: 840px;
+  margin: auto;
+}
+
+.product-list__loader-container{
+  text-align: right;
+  position: relative;
+  margin-bottom: 50px 0px 50px 0px;
+  float: right;
+
+  .loader{
+    left: 0px;
+    right: 0px;
+    display: inline-block;
+    margin: auto;
+    vertical-align: middle;
+    position: relative !important;
   }
 }

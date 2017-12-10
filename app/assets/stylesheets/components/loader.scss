@@ -16,6 +16,18 @@ $width: 100px;
   }
 }
 
+.loader.loader--small {
+  position: absolute;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  &:before {
+    content: '';
+    display: inline;
+    padding-top: 100%;
+  }
+}
+
 .loader .circular {
   animation: rotate 2s linear infinite;
   height: 100%;

@@ -3,15 +3,16 @@ import ProductCard        from "./product_card"
 import ProductFilterForm  from "./product_filter_form"
 import Pagination         from "rc-pagination"
 import PaginationLocale   from "rc-pagination/lib/locale/en_US"
+import Loader             from "../../shared/loader"
 import "rc-pagination/assets/index.css";
 
 class ProductList extends Component{
   renderFilterForm(){
-    return(
-      <ProductFilterForm
-        handleFilterSubmission={this.props.handleFilterSubmission}
-        store={this.props.store}/>
-    )
+      return(
+        <ProductFilterForm
+          handleFilterSubmission={this.props.handleFilterSubmission}
+          store={this.props.store}/>
+      )
   }
 
   renderPagination(){
@@ -40,10 +41,23 @@ class ProductList extends Component{
       </ul>
     )
   }
+
+  renderLoader(){
+    if(this.props.loading){
+      return(
+        <div className="product-list__loader-container">
+          <Loader small="true" />
+          <span style={{marginLeft: "5px"}}> Loading...</span>
+        </div>)
+    }else{
+      return null
+    }
+  }
   render(){
     return(
       <div className="product-list--container">
-        <p className="product-list-label">Product List</p>
+        {this.renderLoader()}
+        <div className="product-list-label">Product List</div>
         {this.renderFilterForm()}
         {this.renderPagination()}
         {this.renderItems()}

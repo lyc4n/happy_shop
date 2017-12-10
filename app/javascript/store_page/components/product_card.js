@@ -2,14 +2,14 @@ import React, {Component} from "react"
 
 class ProductCard extends Component{
   priceDisplay(){
-    const basePrice = `$${(this.props.price / 1000)}`
-    const salePrice = `$${(this.props.sale_price / 1000)}`
+    const basePrice = `$${(this.props.price / 100)}`
+    const salePrice = `$${(this.props.sale_price / 100)}`
 
     if(this.props.under_sale){
       return(
         <span>
-          <strike>{basePrice}</strike>
-          <strong>{salePrice}</strong>
+          <strike className="price-detail">{basePrice}</strike>
+          <strong className="price-detail">{salePrice}</strong>
           ({this.props.sale_text})
         </span>
       )

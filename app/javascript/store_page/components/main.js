@@ -6,14 +6,16 @@ class ProductsFetcher{
     this.endpoint = "/api/v1/products"
   }
 
-  perform(fetchOptions, successCallback){
+  perform(fetchOptions, beforeSendCallback, successCallback){
+    this.beforeSendCallback =  beforeSendCallback
     $.ajax({
       url:        this.endpoint,
       data:       fetchOptions,
-      beforeSend: (request) => {
+      beforeSend: ((request) => {
+        this.beforeSendCallback()
         request.setRequestHeader("Content-Type", "application/vnd.api+json")
         request.setRequestHeader("Accept",       "application/vnd.api+json")
-      },
+      }).bind(this),
       success: successCallback,
       error:   (response) => {
         alert("Woops, an error occured.")
@@ -26,6 +28,7 @@ class Main extends Component{
   constructor(props){
     super(props)
     this.state = {
+      loading:      false,
       products:     [],
       fetchOptions: {page: {number: 1}}}
   }
@@ -53,8 +56,12 @@ class Main extends Component{
 
   fetchRecords(){
     const fetcher = new ProductsFetcher
-    fetcher.perform(this.state.fetchOptions, ((response) =>{
-      this.setState({products: response.data, meta: response.meta})
+    fetcher.perform(
+      this.state.fetchOptions,
+      ((_) =>{
+      this.setState({loading: true})}).bind(this),
+      ((response) =>{
+      this.setState({products: response.data, meta: response.meta, loading: false})
     }).bind(this))
   }
 
@@ -62,6 +69,7 @@ class Main extends Component{
     return(
       <div>
         <ProductList
+          loading={this.state.loading}
           handleFilterSubmission={this.handleFilterSubmission.bind(this)}
           store={this.props.store}
           handlePageClick={this.handlePageClick.bind(this)}

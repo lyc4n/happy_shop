@@ -69,9 +69,10 @@ class ProductFilterForm extends Component{
       <div className="product-filter-form__field">
         <label className="product-filter-form__label">Filter Price:</label>
         <div style={wrapperStyle}>
-          <Range defaultValue={[this.props.store.min_price, this.props.store.max_price]}
+          <Range updateWhenDrag={true} defaultValue={[this.props.store.min_price, this.props.store.max_price]}
             min={this.props.store.min_price}
             max={this.props.store.max_price}
+            onChange={this.handlePriceFilterChange.bind(this)}
             onAfterChange={this.handlePriceFilterChange.bind(this)} />
           <small className="range-label">{this.priceFilterLabel()}</small>
         </div>

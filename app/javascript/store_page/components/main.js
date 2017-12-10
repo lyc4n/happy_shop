@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import ProductList from "./product_list"
 
 class ProductsFetcher{
   constructor(){
@@ -34,7 +35,6 @@ class Main extends Component{
   fetchRecords(){
     const fetcher = new ProductsFetcher
     fetcher.perform(this.state.fetchOptions, ((response) =>{
-      console.log("Back in main")
       this.setState({products: response.data, meta: response.meta})
     }).bind(this))
   }
@@ -42,7 +42,7 @@ class Main extends Component{
   render(){
     return(
       <div>
-        Welcome to Happy Shop!
+        <ProductList products={this.state.products} />
       </div>
     )
   }

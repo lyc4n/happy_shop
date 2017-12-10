@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HappyShop</title>
+    <title>Happy Shop</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
@@ -14,7 +14,11 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="/" class="navbar-brand">Happy Shop</a>
+          <a href="/" class="navbar-brand">
+            Happy Shop
+            <%= image_tag "smile", size: 24, class: "happy-shop--owner" %>
+            <%= image_tag "store", size: 24, class: "happy-shop--shop" %>
+          </a>
         </div>
       </div>
     </div>

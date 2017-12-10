@@ -1,5 +1,7 @@
-import React, {Component} from "react"
-import ProductList from "./product_list"
+import React, {Component}     from "react"
+import ProductList            from "./product_list"
+import {Route, BrowserRouter} from "react-router-dom"
+import ProductDetail          from "./product_detail"
 
 class ProductsFetcher{
   constructor(){
@@ -67,15 +69,28 @@ class Main extends Component{
 
   render(){
     return(
-      <div>
-        <ProductList
-          loading={this.state.loading}
-          handleFilterSubmission={this.handleFilterSubmission.bind(this)}
-          store={this.props.store}
-          handlePageClick={this.handlePageClick.bind(this)}
-          products={this.state.products}
-          meta={this.state.meta} />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" render={()=>{
+            return(
+              <ProductList
+                loading={this.state.loading}
+                handleFilterSubmission={this.handleFilterSubmission.bind(this)}
+                store={this.props.store}
+                handlePageClick={this.handlePageClick.bind(this)}
+                products={this.state.products}
+                meta={this.state.meta} />)
+          }} />
+
+          <Route path="/products/:id" render={(props)=>{
+              const id      = props.match.params.id
+              const product = this.state.products.find((product) =>{ return(product.id == id)})
+              return(<ProductDetail {...product.attributes} id={product.id} />)
+          }}/>
+
+
+        </div>
+      </BrowserRouter>
     )
   }
 }

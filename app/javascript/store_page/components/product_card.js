@@ -1,9 +1,10 @@
 import React, {Component} from "react"
+import {Link} from "react-router-dom"
 
 class ProductCard extends Component{
   priceDisplay(){
-    const basePrice = `$${(this.props.price / 100)}`
-    const salePrice = `$${(this.props.sale_price / 100)}`
+    const basePrice = this.props.price_display
+    const salePrice = this.props.sale_price_display
 
     if(this.props.under_sale){
       return(
@@ -22,11 +23,14 @@ class ProductCard extends Component{
     }
   }
   render(){
+    const productPath = `/products/${this.props.id}`
     return(
       <li className="product-card">
-        <div className="product-card__image"></div>
+        <Link to={productPath} className="product-card__link">
+          <div className="product-card__image"></div>
+        </Link>
         <div className="product-card__tags">
-          NEW | LIMITED EDITION
+          <span className="new-tag">NEW</span> | LIMITED EDITION
         </div>
         <div className="product-card__infos">
           <p className="product-card__info-name">{this.props.name}</p>

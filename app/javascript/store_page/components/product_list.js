@@ -35,7 +35,7 @@ class ProductList extends Component{
       <ul className="product-list">
         {
           $.map(this.props.products, ((product) => {
-            return <ProductCard {...product.attributes} key={product.id} />
+            return <ProductCard {...product.attributes} id={product.id} key={product.id} />
           }))
         }
       </ul>

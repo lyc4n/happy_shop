@@ -5,7 +5,11 @@ FactoryBot.define do
 
   factory :product do
     name
-    price      {Faker::Commerce.price.to_i * 100}
+    price      do
+                 temp_price = Faker::Commerce.price.to_i
+                 price      = temp_price == 0 ? 70 : temp_price
+                 price * 100
+               end
     sale_price {price * 0.5}
     sale_text  "50% off"
     category   {Faker::Commerce.department}

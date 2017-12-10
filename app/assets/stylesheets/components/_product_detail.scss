@@ -1,0 +1,15 @@
+.product-detail__image{
+  background: image_url("product-card-image") center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 300px;
+  width: 100%;
+}
+
+.product-detail__price{
+  margin-top: 10px;
+
+  strike{
+    margin-right: 10px;
+  }
+}

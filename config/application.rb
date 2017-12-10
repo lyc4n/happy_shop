@@ -28,5 +28,6 @@ module HappyShop
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.autoload_paths << Rails.root.join('lib')
+    config.serve_static_assets = true
   end
 end

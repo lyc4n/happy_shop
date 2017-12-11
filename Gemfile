@@ -19,7 +19,6 @@ gem "jbuilder", "~> 2.5"
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "pry-rails"
-  gem "faker"
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "shoulda-matchers"
@@ -40,5 +39,4 @@ gem "bootstrap-sass", "~> 3.3.6"
 gem "bootswatch-rails"
 gem "font-awesome-sass", "~> 4.7.0"
 gem "jquery-rails"
-
-gem "rails_12factor", group: :production
+gem "faker"

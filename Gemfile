@@ -20,7 +20,6 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "pry-rails"
   gem "rspec-rails"
-  gem "factory_bot_rails"
   gem "shoulda-matchers"
 end
 
@@ -40,3 +39,4 @@ gem "bootswatch-rails"
 gem "font-awesome-sass", "~> 4.7.0"
 gem "jquery-rails"
 gem "faker"
+gem "factory_bot_rails"

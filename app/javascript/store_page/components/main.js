@@ -32,7 +32,10 @@ class Main extends Component{
     this.state = {
       loading:      false,
       products:     [],
-      fetchOptions: {page: {number: 1}}}
+      fetchOptions: {page: {number: 1}},
+      waitList:     [],
+      wishList:     []
+    }
   }
 
   componentDidMount(){
@@ -67,6 +70,29 @@ class Main extends Component{
     }).bind(this))
   }
 
+  toggleWait(id){
+    let   list  = this.state.waitList.slice()
+    const index = this.state.waitList.indexOf(Number(id))
+    if(index > -1){
+      list.splice(index, 1)
+    }else{
+      list.push(Number(id))
+    }
+
+    this.setState({waitList: list})
+  }
+
+  toggleWish(id){
+    let   list  = this.state.wishList.slice()
+    const index = this.state.wishList.indexOf(Number(id))
+    if(index > -1){
+      list.splice(index, 1)
+    }else{
+      list.push(Number(id))
+    }
+    this.setState({wishList: list})
+  }
+
   render(){
     return(
       <BrowserRouter>
@@ -74,6 +100,10 @@ class Main extends Component{
           <Route exact path="/" render={()=>{
             return(
               <ProductList
+                toggleWish={this.toggleWish.bind(this)}
+                toggleWait={this.toggleWait.bind(this)}
+                wishList={this.state.wishList}
+                waitList={this.state.waitList}
                 loading={this.state.loading}
                 handleFilterSubmission={this.handleFilterSubmission.bind(this)}
                 store={this.props.store}

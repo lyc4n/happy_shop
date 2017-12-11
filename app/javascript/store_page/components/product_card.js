@@ -1,7 +1,21 @@
 import React, {Component} from "react"
-import {Link} from "react-router-dom"
+import {Link}             from "react-router-dom"
 
 class ProductCard extends Component{
+  constructor(props){
+    super(props)
+  }
+
+  handleWishListButton(e){
+    e.preventDefault()
+    this.props.toggleWish(this.props.id)
+  }
+
+  handleWaitListButton(e){
+    e.preventDefault()
+    this.props.toggleWait(this.props.id)
+  }
+
   priceDisplay(){
     const basePrice = this.props.price_display
     const salePrice = this.props.sale_price_display
@@ -22,23 +36,72 @@ class ProductCard extends Component{
       )
     }
   }
+
+  outOfStockLabel(){
+      if(this.props.sold_out){
+        return(
+          <div className="product-card__oos-label">OUT OF STOCK</div>
+        )
+      }
+  }
+
+  waitListButton(){
+    if(this.props.sold_out){
+      let klass = ["product-card__waitlist-button"]
+      let text  = "WAITLIST ME"
+      if(this.props.isWaitListed){
+        text = "WAITLISTED"
+        klass.push("product-card__waitlist-button--done")
+      }
+
+      return(
+        <button onClick={this.handleWaitListButton.bind(this)}
+                className={klass.join(" ")}>{text}</button>
+      )
+    }
+  }
+
+  wishListButton(){
+    let klass = ["fa fa-2x"]
+    if(this.props.isWishListed){
+      klass.push("fa-heart")
+    }else{
+      klass.push("fa-heart-o")
+    }
+
+    return(
+      <div onClick={this.handleWishListButton.bind(this)}
+         className="product-card__wishlink-button">
+        <i className={klass.join(" ")}></i>
+      </div>
+    )
+  }
+
+  addToBagButton(){
+    if(!this.props.sold_out){
+      return(
+        <button onClick={(e)=>{ e.preventDefault()}}
+                className="product-card__add-to-bag-button">ADD TO BAG</button>
+      )
+    }
+  }
+
   render(){
     const productPath = `/products/${this.props.id}`
     return(
       <li className="product-card">
         <Link to={productPath} className="product-card__link">
           <div className="product-card__image">
-            <a onClick={(e)=>{ e.preventDefault()}}
-               className="product-card__wishlink-button">
-              <i className="fa fa-heart-o fa-2x"></i>
-            </a>
-
-            <button onClick={(e)=>{ e.preventDefault()}}
-                    className="product-card__add-to-bag-button">ADD TO BAG</button>
+            {this.wishListButton()}
+            {this.outOfStockLabel()}
+            {this.waitListButton()}
+            {this.addToBagButton()}
           </div>
         </Link>
         <div className="product-card__tags">
-          <span className="new-tag">NEW</span> | LIMITED EDITION
+          <span className="new-tag">NEW</span>
+          &nbsp;|&nbsp;
+          <span className="text-muted">LIMITED EDITION</span>
         </div>
         <div className="product-card__infos">
           <p className="product-card__info-name">{this.props.name}</p>

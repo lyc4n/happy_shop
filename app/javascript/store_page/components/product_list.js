@@ -35,7 +35,15 @@ class ProductList extends Component{
       <ul className="product-list">
         {
           $.map(this.props.products, ((product) => {
-            return <ProductCard {...product.attributes} id={product.id} key={product.id} />
+            return <ProductCard
+                        {...product.attributes}
+                        id={product.id}
+                        key={product.id}
+                        toggleWish={this.props.toggleWish.bind(this)}
+                        toggleWait={this.props.toggleWait.bind(this)}
+                        isWishListed={this.props.wishList.indexOf(Number(product.id)) > -1}
+                        isWaitListed={this.props.waitList.indexOf(Number(product.id)) > -1}
+                   />
           }))
         }
       </ul>

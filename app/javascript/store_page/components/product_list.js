@@ -31,23 +31,27 @@ class ProductList extends Component{
   }
 
   renderItems(){
-    return(
-      <ul className="product-list">
-        {
-          $.map(this.props.products, ((product) => {
-            return <ProductCard
-                        {...product.attributes}
-                        id={product.id}
-                        key={product.id}
-                        toggleWish={this.props.toggleWish.bind(this)}
-                        toggleWait={this.props.toggleWait.bind(this)}
-                        isWishListed={this.props.wishList.indexOf(Number(product.id)) > -1}
-                        isWaitListed={this.props.waitList.indexOf(Number(product.id)) > -1}
-                   />
-          }))
-        }
-      </ul>
-    )
+    if(this.props.products.length == 0){
+      return(<div className="product-list__empty-label">No product found</div>)
+    }else{
+      return(
+        <ul className="product-list">
+          {
+            $.map(this.props.products, ((product) => {
+              return <ProductCard
+                          {...product.attributes}
+                          id={product.id}
+                          key={product.id}
+                          toggleWish={this.props.toggleWish.bind(this)}
+                          toggleWait={this.props.toggleWait.bind(this)}
+                          isWishListed={this.props.wishList.indexOf(Number(product.id)) > -1}
+                          isWaitListed={this.props.waitList.indexOf(Number(product.id)) > -1}
+                     />
+            }))
+          }
+        </ul>
+      )
+    }
   }
 
   renderLoader(){

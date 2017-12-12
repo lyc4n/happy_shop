@@ -2,7 +2,7 @@ class Api::V1::ProductsIndex
   extend Forwardable
 
   attr_reader    :params, :products
-  def_delegators :products, :total_entries, :total_pages, :current_page
+  def_delegators :products, :total_entries, :total_pages, :current_page, :per_page
 
   DEFAULT_SORT_OPTION = "price asc"
 
@@ -28,7 +28,7 @@ class Api::V1::ProductsIndex
   end
 
   def filter_options
-    params.fetch(:filter, {}).permit([:category_matches, :price_gteq, :price_lteq]).to_h
+    params.fetch(:filter, {}).permit(:price_gteq, :price_lteq, category_in: []).to_h
   end
 
   def page_options

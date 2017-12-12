@@ -42,6 +42,8 @@ GEM
     autoprefixer-rails (7.2.2)
       execjs
     bindex (0.5.0)
+    bootstrap-multiselect-rails (0.9.9)
+      rails (>= 4.0.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -229,6 +231,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-multiselect-rails
   bootstrap-sass (~> 3.3.6)
   bootswatch-rails
   byebug

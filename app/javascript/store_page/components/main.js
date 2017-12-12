@@ -53,7 +53,7 @@ class Main extends Component{
 
   handleFilterSubmission(fetchOptions){
     const fetcher     = new ProductsFetcher
-    fetchOptions.page = {number: 1}
+    fetchOptions.page = {number: 1, size: fetchOptions.page.size}
     this.setState({fetchOptions: fetchOptions}, (() =>{
       this.fetchRecords()
     }))

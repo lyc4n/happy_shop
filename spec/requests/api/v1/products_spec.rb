@@ -34,7 +34,7 @@ RSpec.describe "V1 Products API", type: :request do
 
 
       it "returns correct response format of filtered products" do
-        get api_v1_products_path, params: {filter: {category_matches: "Sports"}}, headers: jsonapi_headers
+        get api_v1_products_path, params: {filter: {category_in: ["Sports"]}}, headers: jsonapi_headers
 
         json = JSON.parse(response.body)
         expect(json["data"].length).to eq(1)
@@ -48,12 +48,13 @@ RSpec.describe "V1 Products API", type: :request do
       end
 
       it "returns correct response for the links of pagination" do
-        get api_v1_products_path, params: {filter: {category_matches: "religion"}, page: {size: 2}}, headers: jsonapi_headers
+        get api_v1_products_path, params: {filter: {category_in: ["Religion"]}, page: {size: 2}}, headers: jsonapi_headers
 
         json = JSON.parse(response.body)
         expect(json["meta"]["total_entries"]).to eq(10)
         expect(json["meta"]["total_pages"]).to eq(5)
         expect(json["meta"]["current_page"]).to eq(1)
+        expect(json["meta"]["per_page"]).to eq(2)
       end
     end
   end

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::ProductsIndex do
   let(:sort_and_filtered_params) do
     ActionController::Parameters.new({
       sort:   "-price",
-      filter: {category_matches: "Kitchen",
+      filter: {category_in: ["Kitchen", "Computer"],
                price_gteq: 1000,
                price_lteq: 8000}
       })
@@ -47,5 +47,6 @@ RSpec.describe Api::V1::ProductsIndex do
     it{expect(@products_index).to delegate_method(:total_entries).to(:products)}
     it{expect(@products_index).to delegate_method(:total_pages).to(:products)}
     it{expect(@products_index).to delegate_method(:current_page).to(:products)}
+    it{expect(@products_index).to delegate_method(:per_page).to(:products)}
   end
 end

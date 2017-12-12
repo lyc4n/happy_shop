@@ -3,6 +3,7 @@ class Api::V1::ProductsController < ApplicationController
     products_index = Api::V1::ProductsIndex.new(self)
     render jsonapi: products_index.products,
            meta: {
+             per_page:      products_index.per_page,
              total_entries: products_index.total_entries,
              total_pages:   products_index.total_pages,
              current_page:  products_index.current_page}

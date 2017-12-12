@@ -21,7 +21,11 @@ class ProductList extends Component{
     }else{
       return(
         <div className="product-list__pagination-container">
-          <Pagination locale={PaginationLocale} onChange={this.props.handlePageClick}
+          <Pagination
+            locale={PaginationLocale}
+            showTitle={false}
+            onChange={this.props.handlePageClick}
+            pageSize={this.props.meta.per_page}
             current={this.props.meta.current_page}
             total={this.props.meta.total_entries}
           />

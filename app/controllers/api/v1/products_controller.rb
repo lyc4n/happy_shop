@@ -19,6 +19,41 @@ class Api::V1::ProductsController < ApplicationController
     param :size,   :number, "Count of products per page"
   end
 
+  example  <<-EOS
+    {
+      "data": [
+        {
+          "id": "7",
+          "type": "products",
+          "attributes": {
+            "name": "Practical Plastic Pants #7",
+            "category": "Sports, Health & Home",
+            "price": 400,
+            "sale_price": 200,
+            "sale_text": "50% off",
+            "under_sale": false,
+            "sold_out": false,
+            "price_display": "$4.00",
+            "sale_price_display": "$2.00"
+          }
+        },],
+      "links": {
+        "first": "/api/v1/products?page%5Bnumber%5D=1",
+        "last": "/api/v1/products?page%5Bnumber%5D=2",
+        "prev": null,
+        "next": "/api/v1/products?page%5Bnumber%5D=2"
+      },
+      "meta": {
+        "per_page": 10,
+        "total_entries": 20,
+        "total_pages": 2,
+        "current_page": 1
+      },
+      "jsonapi": {
+        "version": "1.0"
+      }
+    }
+  EOS
   def index
     products_index = Api::V1::ProductsIndex.new(self)
     render jsonapi: products_index.products,
@@ -32,6 +67,28 @@ class Api::V1::ProductsController < ApplicationController
   api   :GET, "/products/:id", "Fetch a specific product"
   param :id, :number, required: true
   error code: 404, desc: "Product not found"
+  example  <<-EOS
+    {
+      "data": {
+        "id": "1",
+        "type": "products",
+        "attributes": {
+          "name": "Durable Wooden Shoes #1",
+          "category": "Industrial",
+          "price": 4400,
+          "sale_price": 2200,
+          "sale_text": "50% off",
+          "under_sale": false,
+          "sold_out": false,
+          "price_display": "$44.00",
+          "sale_price_display": "$22.00"
+        }
+      },
+      "jsonapi": {
+        "version": "1.0"
+      }
+    }
+  EOS
   def show
     begin
       product = Product.find(params[:id])

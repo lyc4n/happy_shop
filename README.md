@@ -1,24 +1,69 @@
-# README
+# Happy Shop
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An test app that demonstrates a jsonapi consumed by a frontend framework.
 
-Things you may want to cover:
+# Features
 
-* Ruby version
+- JSONAPI that exposes endpoints for:
+    -  Filtering products
+    -  Fetching specific product detail
+- Frontend that allows users to make use the api
 
-* System dependencies
+# Technologies
 
-* Configuration
+- Ruby / Ruby on Rails
+- ReactJS
+- PostgreSQL
+- JSONAPI
 
-* Database creation
+# Setup
 
-* Database initialization
+1. Clone the project
+    ```sh
+    git clone https://lyc4n@bitbucket.org/lyc4n/happy-store.git
+    ```
+2. cd into the project
+    ```sh
+    cd happy-store
+    ```
+3. Run bundle install
+    ```
+    cd happy-store
+    ```
+4. Create the database 
+   ```sh
+    rails db:create
+   ```
+5. Run migrations 
+   ```sh
+   rails db:migrate
+    ```
+6. Seed the database
+   ```sh
+   rails db:seed
+    ```
+7. Make sure you have [yarn](https://yarnpkg.com/en/) installed
+8. Install js dependencies
+    ```sh
+    yarn
+    ```
+9. Run webpack-server
+    ```sh
+    ./bin/webpack-dev-server
+    ```
+    
+10. Run server
+    ```sh
+    rails s
+    ```
+# Running test
 
-* How to run the test suite
+1. Run 
+    ```sh
+    rspec
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+# API Documentation
 
-* Deployment instructions
-
-* ...
+Api documentation can be found on the http://localhost:300/apidoc/1/products.html when you run the server. 
+It is also available [here](https://happy-shop-online.herokuapp.com/apidoc/1/products.html)

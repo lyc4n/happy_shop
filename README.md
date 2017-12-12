@@ -65,5 +65,6 @@ An test app that demonstrates a jsonapi consumed by a frontend framework.
 
 # API Documentation
 
-Api documentation can be found on the http://localhost:300/apidoc/1/products.html when you run the server. 
-It is also available [here](https://happy-shop-online.herokuapp.com/apidoc/1/products.html)
+Api documentation can be found on the http://localhost:3000/apidoc/1.html when you run the server.
+It is also available
+[here](https://happy-shop-online.herokuapp.com/apidoc/1.html)

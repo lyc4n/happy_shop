@@ -5,7 +5,6 @@ $base-color: #D80035;
   display: inline-block;
   width: 280px;
   height: 360px;
-  border: 1px dotted gray;
   padding: 15px 5px;
 }
 
@@ -21,10 +20,6 @@ $base-color: #D80035;
   font-size: 12px;
 }
 
-.product-card__infos-name{
-  text-transform: uppercase;
-}
-
 .product-card__tags{
   font-size: 10px;
   font-weight: bolder;
@@ -37,15 +32,21 @@ $base-color: #D80035;
   margin-bottom: 1px;
 }
 
-.product-card__info-name{
+.product-card__info-category{
+  text-transform: uppercase;
   font-weight: bolder;
 }
 
 .product-card__info-price .price-detail{
   margin-right: 5px;
 }
+
 .product-card__info-stars .fa-star{
   color: $base-color;
+}
+
+.product-card__info-stars .fa-star.fa-star--empty{
+  color: #CBCBCB;
 }
 
 .product-card__info-stars .fa-star, .product-card__info-stars .fa-star-o{
@@ -67,10 +68,9 @@ $base-color: #D80035;
 }
 
 .product-card__wishlink-button{
-  display:  none;
   position: absolute;
-  top: 0px;
-  right: 10px;
+  bottom: 5px;
+  right: 15%;
 
   .fa-heart-o{
     color: black;
@@ -78,6 +78,12 @@ $base-color: #D80035;
 
   .fa-heart{
     color: $base-color;
+  }
+
+  @include breakpoint(md){
+    display:  none;
+    top: 0px;
+    right: 10px;
   }
 }
 
@@ -110,11 +116,11 @@ $base-color: #D80035;
 }
 
 .product-card:hover{
-  .product-card__waitlist-button,
-  .product-card__wishlink-button,
-  .product-card__add-to-bag-button{
-    display: inherit;
+  @include breakpoint(md){
+    .product-card__waitlist-button,
+    .product-card__wishlink-button,
+    .product-card__add-to-bag-button{
+      display: block;
+    }
   }
 }
-
-

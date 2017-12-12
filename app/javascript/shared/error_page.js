@@ -24,7 +24,7 @@ class ErrorPage extends Component{
   }
   render(){
     return(
-      <div className="error-page">
+      <div className="container error-page">
         {this.renderErrorDetails()}
         <Link to="/">Go back to Product List</Link>
       </div>

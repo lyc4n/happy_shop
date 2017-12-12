@@ -1,17 +1,19 @@
 .product-filter-form{
-  height: 75px;
+  height: auto;
   border-bottom: 1px solid #eee;
   border-top: 1px solid #eee;
   margin-bottom: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
+
 .product-filter-form__field{
   display: inline-block;
   padding: 5px 15px;
   position: relative;
   height: 100%;
   vertical-align: top;
+  width: 100%;
 
   .range-label{
     position: absolute;
@@ -22,15 +24,50 @@
     z-index: -1;
   }
 
+  @include breakpoint(sm){
+    width: auto;
+  }
+}
+
+.product-filter-form__field--price-range{
   .range-select-wrapper{
-    width: 150px;
+    width: 95%;
     margin: 0px;
     display: inline-block;
     padding-top: 5px;
+
+    @include breakpoint(md){
+      width: 150px;
+    }
+  }
+}
+
+.product-filter-form__field--category-select{
+  .btn-group, button{
+    width: 100%;
+  }
+}
+
+.product-filter-form__field--price-sort{
+  .btn-group, label{
+    width: 100%;
   }
 
-  .category-multiselect{
-    width: 170px;
+  label{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+
+  @include breakpoint(sm){
+    .btn-group, label{
+      width: initial;
+    }
+  }
+}
+
+.product-filter-form__field--submit{
+  .btn-group, button{
+    width: 100%;
   }
 }
 

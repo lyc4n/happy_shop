@@ -70,15 +70,25 @@ class ProductList extends Component{
       return null
     }
   }
+
+  backToTop(e){
+    e.preventDefault()
+    $("html, body").animate({ scrollTop: 0 }, "fast")
+  }
+
   render(){
     return(
       <div className="product-list--container">
         {this.renderLoader()}
-        <div className="product-list-label">Product List</div>
+        <div className="product-list-label">&nbsp;</div>
         {this.renderFilterForm()}
         {this.renderPagination()}
         {this.renderItems()}
         {this.renderPagination()}
+        <a href="#happy-store-navbar" className="product-list__link-to-top" onClick={this.backToTop}>
+          <i className="fa fa-arrow-up"></i>
+          Back to top
+        </a>
       </div>
     )
   }

@@ -104,8 +104,8 @@ class ProductCard extends Component{
           <span className="text-muted">LIMITED EDITION</span>
         </div>
         <div className="product-card__infos">
-          <p className="product-card__info-name">{this.props.name}</p>
           <p className="product-card__info-category">{this.props.category}</p>
+          <p className="product-card__info-name">{this.props.name}</p>
           <p className="product-card__info-price">
             <span>{this.priceDisplay()}</span>
           </p>
@@ -114,7 +114,7 @@ class ProductCard extends Component{
             <i className="fa fa-star"/>
             <i className="fa fa-star"/>
             <i className="fa fa-star"/>
-            <i className="fa fa-star-o"/>
+            <i className="fa fa-star fa-star--empty"/>
           </p>
         </div>
       </li>

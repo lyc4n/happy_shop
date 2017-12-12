@@ -80,7 +80,7 @@ class ProductDetail extends Component{
   }
   render(){
     return(
-      <div className="product-detail">
+      <div className="container product-detail">
         <h1>
           <Link to="/">Products</Link>
           { " / "}

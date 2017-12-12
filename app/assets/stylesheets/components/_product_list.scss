@@ -1,6 +1,6 @@
 .product-list--container{
   width: auto;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: auto;
 
   .loader{
@@ -16,10 +16,19 @@
   }
 }
 
-.product-list{
+ul.product-list{
+  margin: 0px;
   padding-left: 0px;
-  width: 840px;
+  width: 280px;
   margin: auto;
+
+  @include breakpoint(sm){
+    width: 560px;
+  }
+
+  @include breakpoint(md){
+    width: 840px;
+  }
 }
 
 .product-list__empty-label{
@@ -40,5 +49,15 @@
     margin: auto;
     vertical-align: middle;
     position: relative !important;
+  }
+}
+
+.product-list__link-to-top{
+  margin: auto;
+  display: block;
+  text-align: center;
+
+  @include breakpoint(sm){
+    display: none;
   }
 }

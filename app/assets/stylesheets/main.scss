@@ -4,6 +4,7 @@
 @import "bootswatch/yeti/bootswatch";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "mixins/*";
 @import "components/*";
 body { padding-top: 60px; }
 a:hover{

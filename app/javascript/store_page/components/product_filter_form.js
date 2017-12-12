@@ -87,7 +87,7 @@ class ProductFilterForm extends Component{
     })
 
     return(
-      <div className="product-filter-form__field">
+      <div className="product-filter-form__field product-filter-form__field--category-select">
         <label className="product-filter-form__label">Filter Category:</label>
         <select value={this.selectedCategoryFilters()} onChange={this.handleCategorySelection.bind(this)} ref={(select) => this.categorySelect = select} multiple={true}>{options}</select>
       </div>
@@ -100,7 +100,7 @@ class ProductFilterForm extends Component{
 
   renderPriceSortSelect(){
     return(
-      <div className="product-filter-form__field">
+      <div className="product-filter-form__field product-filter-form__field--price-sort">
         <label className="product-filter-form__label">Sort Price:</label>
         <ToggleButtonGroup type="radio" name="options" defaultValue={this.selectedPriceSort()}>
           <ToggleButton value="price" className="btn-sm btn-info" onClick={this.changePriceSort.bind(this, "price")}>
@@ -118,7 +118,7 @@ class ProductFilterForm extends Component{
 
   renderPriceRangeSelect(){
     return(
-      <div className="product-filter-form__field">
+      <div className="product-filter-form__field product-filter-form__field--price-range">
         <label className="product-filter-form__label">Filter Price:</label>
         <div className="range-select-wrapper">
           <Range updateWhenDrag={true} defaultValue={this.selectedPriceRange()}
@@ -135,7 +135,7 @@ class ProductFilterForm extends Component{
 
   renderSubmit(){
     return(
-      <div className="product-filter-form__field">
+      <div className="product-filter-form__field product-filter-form__field--submit">
         <label className="product-filter-form__label">&nbsp;</label>
         <button className="product-filter-form__submit-button btn btn-primary btn-sm"
           onClick={this.handleFilterSubmission.bind(this)}>

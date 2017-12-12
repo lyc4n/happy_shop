@@ -4,7 +4,7 @@ import {Link}               from "react-router-dom"
 class ErrorPage extends Component{
 
   renderErrorDetails(){
-    if(this.props.errors.length == 0){
+    if((this.props.errors || []).length == 0){
       return(<h3>Ooops, something went wrong...</h3>)
     }else{
       return(

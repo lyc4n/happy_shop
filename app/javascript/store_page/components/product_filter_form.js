@@ -117,7 +117,6 @@ class ProductFilterForm extends Component{
   }
 
   renderPriceRangeSelect(){
-    console.log(this.selectedPriceRange())
     return(
       <div className="product-filter-form__field">
         <label className="product-filter-form__label">Filter Price:</label>

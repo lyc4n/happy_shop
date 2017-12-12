@@ -2,6 +2,7 @@ import React, {Component}   from "react"
 import ProductList          from "./product_list"
 import {Route, HashRouter}  from "react-router-dom"
 import ProductDetail        from "./product_detail"
+import ErrorPage            from "../../shared/error_page"
 
 class ProductsFetcher{
   constructor(){
@@ -93,6 +94,12 @@ class Main extends Component{
     this.setState({wishList: list})
   }
 
+  renderErrorPage(errors, history){
+    this.setState({errors: errors}, () =>{
+      history.push("/error_page")
+    })
+  }
+
   render(){
     return(
       <HashRouter>
@@ -115,8 +122,14 @@ class Main extends Component{
 
           <Route path="/products/:id" render={(props)=>{
               const id = props.match.params.id
-              return(<ProductDetail currentProducts={this.state.products} id={id} />)
+              return(<ProductDetail renderErrorPage={this.renderErrorPage.bind(this)}
+                                    history={props.history}
+                                    currentProducts={this.state.products} id={id} />)
           }}/>
+
+          <Route path="/error_page" render={() =>{
+            return(<ErrorPage errors={this.state.errors}/>)
+          }} />
 
 
         </div>

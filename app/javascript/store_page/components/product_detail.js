@@ -41,19 +41,18 @@ class ProductDetail extends Component{
     const fetcher = new ProductFetcher
     if(!this.state.hasData){
       fetcher.perform(this.props.id,
-      // fetcher.perform(444,
         (() =>{
-          console.log("Beforesend")
+          // noop
         }).bind(this),
         ((response) =>{
           const product  = response.data
           const newState = $.extend({hasData: true}, product.attributes)
           this.setState(newState)
         }).bind(this),
-        ((request, response1) =>{
+        ((request) =>{
           const response = request.responseJSON
           if(response.errors){
-            console.log(response.errors[0].detail)
+            this.props.renderErrorPage(response.errors, this.props.history)
           }
         }).bind(this)
       )
@@ -83,7 +82,7 @@ class ProductDetail extends Component{
     return(
       <div className="product-detail">
         <h1>
-          <Link exact="true" to="/">Products</Link>
+          <Link to="/">Products</Link>
           { " / "}
           {this.state.name}
         </h1>
@@ -91,7 +90,7 @@ class ProductDetail extends Component{
 
         <div className="product-detail__content">
           <h3>
-            <small>Category: <em>{this.state.category}</em></small>
+            <small><em>{this.state.category}</em></small>
             {this.renderPrice()}
           </h3>
           <div className="product-detail__image"></div>

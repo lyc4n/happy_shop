@@ -10,6 +10,7 @@ class ProductList extends Component{
   renderFilterForm(){
       return(
         <ProductFilterForm
+          fetchOptions={this.props.fetchOptions}
           handleFilterSubmission={this.props.handleFilterSubmission}
           store={this.props.store}/>
       )

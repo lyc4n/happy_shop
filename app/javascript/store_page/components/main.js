@@ -1,7 +1,7 @@
-import React, {Component}     from "react"
-import ProductList            from "./product_list"
-import {Route, BrowserRouter} from "react-router-dom"
-import ProductDetail          from "./product_detail"
+import React, {Component}   from "react"
+import ProductList          from "./product_list"
+import {Route, HashRouter}  from "react-router-dom"
+import ProductDetail        from "./product_detail"
 
 class ProductsFetcher{
   constructor(){
@@ -95,11 +95,12 @@ class Main extends Component{
 
   render(){
     return(
-      <BrowserRouter>
+      <HashRouter>
         <div>
           <Route exact path="/" render={()=>{
             return(
               <ProductList
+                fetchOptions={this.state.fetchOptions}
                 toggleWish={this.toggleWish.bind(this)}
                 toggleWait={this.toggleWait.bind(this)}
                 wishList={this.state.wishList}
@@ -113,14 +114,13 @@ class Main extends Component{
           }} />
 
           <Route path="/products/:id" render={(props)=>{
-              const id      = props.match.params.id
-              const product = this.state.products.find((product) =>{ return(product.id == id)})
-              return(<ProductDetail {...product.attributes} id={product.id} />)
+              const id = props.match.params.id
+              return(<ProductDetail currentProducts={this.state.products} id={id} />)
           }}/>
 
 
         </div>
-      </BrowserRouter>
+      </HashRouter>
     )
   }
 }

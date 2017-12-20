@@ -4,10 +4,12 @@ RSpec.describe Store do
   context "Initialization" do
 
     let(:store){Store.new}
+    let(:sports_category){create(:category, name: "Sports")}
+    let(:kitchen_category){create(:category, name: "Kitchen")}
 
     before do
-      create(:product, price: 5000, category: "Kitchen")
-      create(:product, price: 16000, category: "Sports")
+      create(:product, price: 5000, category: kitchen_category)
+      create(:product, price: 16000, category: sports_category)
     end
 
     it "sets @category correctly" do

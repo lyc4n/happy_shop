@@ -1,6 +1,6 @@
 class Store
   def initialize
-    @categories = Product.distinct.pluck(:category)
+    @categories = Category.distinct.pluck(:name)
     get_price_range
   end
 

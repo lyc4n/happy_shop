@@ -28,7 +28,7 @@ class Api::V1::ProductsIndex
   end
 
   def filter_options
-    params.fetch(:filter, {}).permit(:price_gteq, :price_lteq, category_in: []).to_h
+    params.fetch(:filter, {}).permit(:price_gteq, :price_lteq, category_name_in: []).to_h
   end
 
   def page_options

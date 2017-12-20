@@ -28,9 +28,9 @@ class ProductFilterForm extends Component{
 
   selectedCategoryFilters(){
     const defaultFilter = {
-      category_in: []
+      category_name_in: []
     }
-    return ((this.props.fetchOptions.filter || defaultFilter).category_in || [])
+    return ((this.props.fetchOptions.filter || defaultFilter).category_name_in || [])
   }
 
   selectedPriceSort(){
@@ -61,7 +61,7 @@ class ProductFilterForm extends Component{
       sort: this.state.priceSort,
       page: {size: this.perPageSelect.value || 10},
       filter: {
-        category_in: categoryOptions,
+        category_name_in: categoryOptions,
         price_gteq: this.state.minPriceFilter,
         price_lteq: this.state.maxPriceFilter
       }

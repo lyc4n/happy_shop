@@ -2,22 +2,25 @@ require "rails_helper"
 
 RSpec.describe Api::V1::ProductsIndex do
 
+  let(:gadget_category){create(:category, name: "Gadget")}
+  let(:kitchen_category){create(:category, name: "Kitchen")}
+  let(:computer_category){create(:category, name: "Computer")}
   let(:empty_params){ActionController::Parameters.new({})}
   let(:sort_and_filtered_params) do
     ActionController::Parameters.new({
       sort:   "-price",
-      filter: {category_in: ["Kitchen", "Computer"],
+      filter: {category_name_in: ["Kitchen", "Computer"],
                price_gteq: 1000,
                price_lteq: 8000}
       })
   end
 
   before do
-    @product_1 = create(:product, price: 4500, category: "Gadgets")
-    @product_2 = create(:product, price: 1000, category: "Kitchen")
-    @product_3 = create(:product, price: 1200, category: "Kitchen")
-    @product_4 = create(:product, price: 8001, category: "Kitchen")
-    @product_5 = create(:product, price: 8000, category: "Kitchen")
+    @product_1 = create(:product, price: 4500, category: gadget_category)
+    @product_2 = create(:product, price: 1000, category: kitchen_category)
+    @product_3 = create(:product, price: 1200, category: kitchen_category)
+    @product_4 = create(:product, price: 8001, category: kitchen_category)
+    @product_5 = create(:product, price: 8000, category: kitchen_category)
   end
 
   describe "initialization" do

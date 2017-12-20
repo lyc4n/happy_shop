@@ -10,18 +10,16 @@ puts "Seeding products..."
 products = []
 
 10.times do
-  products << FactoryBot.attributes_for(:product)
+  products << FactoryBot.create(:product)
 end
 
 5.times do
-  products << FactoryBot.attributes_for(:product, :sold_out)
+  products << FactoryBot.create(:product, :sold_out)
 end
 
 5.times do
-  products << FactoryBot.attributes_for(:product, :under_sale)
+  products << FactoryBot.create(:product, :under_sale)
 end
-
-Product.create!(products)
 
 puts "#{Product.count} are now in the database!"
 puts "Done."

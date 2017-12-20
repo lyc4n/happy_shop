@@ -8,6 +8,12 @@ RSpec.describe "V1 Products API", type: :request do
     }
   end
 
+  let(:sports_category){create(:category, name: "Sports")}
+  let(:clothing_category){create(:category, name: "Clothing")}
+  let(:computers_category){create(:category, name: "Computers")}
+  let(:religion_category){create(:category, name: "Religion")}
+  let(:scifi_category){create(:category, name: "Scifi")}
+
   describe "GET /api/v1/products" do
     context "when given correct Content-Type and Accept headers" do
       before do
@@ -27,14 +33,14 @@ RSpec.describe "V1 Products API", type: :request do
     context "giving filter parameter" do
       before do
 
-        create(:product, category: "Clothing")
-        create(:product, category: "Sports")
-        create(:product, category: "Computers")
+        create(:product, category: clothing_category)
+        create(:product, category: sports_category)
+        create(:product, category: computers_category)
       end
 
 
       it "returns correct response format of filtered products" do
-        get api_v1_products_path, params: {filter: {category_in: ["Sports"]}}, headers: jsonapi_headers
+        get api_v1_products_path, params: {filter: {category_name_in: ["Sports"]}}, headers: jsonapi_headers
 
         json = JSON.parse(response.body)
         expect(json["data"].length).to eq(1)
@@ -43,12 +49,12 @@ RSpec.describe "V1 Products API", type: :request do
 
     context "pagination" do
       before do
-        create_list(:product, 10, category: "Religion")
-        create_list(:product, 2, category:  "Scifi")
+        create_list(:product, 10, category: religion_category)
+        create_list(:product, 2, category:  scifi_category)
       end
 
       it "returns correct response for the links of pagination" do
-        get api_v1_products_path, params: {filter: {category_in: ["Religion"]}, page: {size: 2}}, headers: jsonapi_headers
+        get api_v1_products_path, params: {filter: {category_name_in: ["Religion"]}, page: {size: 2}}, headers: jsonapi_headers
 
         json = JSON.parse(response.body)
         expect(json["meta"]["total_entries"]).to eq(10)
